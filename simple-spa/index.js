@@ -35,8 +35,12 @@ var router = new VueRouter({
       path: '/logout',
       beforeEnter: function (to, from, next) {
         Auth.logout();
-        next('/');
+        next('/login');
       }
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 });
