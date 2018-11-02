@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <title>Vue Simple SPA</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="row mt-5">
+            <div class="col-md text-center border">
+                <router-link to="/">Top</router-link>
+            </div>
+            <div class="col-md text-center border">
+                <router-link to="/users">User List</router-link>
+            </div>
+        </div>
+        <router-view></router-view>
+    </div>
+</body>
+
+<template id="top">
+    <div class="container">
+        <div class="row mt-5">
+            <h1 class="mx-auto">Top Page</h1>
+        </div>
+    </div>
+</template>
+
+<template id="user-list">
+    <div class="container">
+        <div class="row mt-5">
+            <h1 class="mx-auto">User List</h1>
+        </div>
+        <div class="row mt-5" v-if="loading || error">
+            <span v-if="loading">loading...</span>
+            <span v-if="error">{{ error }}</span>
+        </div>
+        <div class="row mt-5" v-if="!loading && !error">
+            <table class="table ml-2 mr-2">
+                <thead>
+                    <tr>
+                        <td scppe="col">ID</td>
+                        <td scppe="col">Name</td>
+                        <td scppe="col"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="user in users" :key="user.id">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>
+                            <router-link :to="{ path: '/users/' + user.id}">
+                                <button class="btn btn-outline-primary">Detail</button>
+                            </router-link>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
+
+<template id="user-detail">
+    <div class="container">
+        <div class="row mt-5">
+            <h1 class="mx-auto">User Detail</h1>
+        </div>
+        <div class="row mt-5" v-if="loading || error">
+            <span v-if="loading">loading...</span>
+            <span v-if="error">{{ error }}</span>
+        </div>
+        <div class="row mt-5" v-if="user">
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <td>{{ user.id }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ user.name }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ user.description }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</template>
+
+<script src="https://unpkg.com/vue@2.5.17"></script>
+<script src="https://unpkg.com/vue-router@3.0.1"></script>
+<script src="api.js"></script>
+<script src="userList.js"></script>
+<script src="userDetail.js"></script>
+<script src="index.js"></script>
+
+</html>
