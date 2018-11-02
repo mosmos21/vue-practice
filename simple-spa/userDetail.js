@@ -10,7 +10,7 @@ var userDetail = {
   methods: {
     fetchData: function () {
       this.loading = true;
-      api.getUser(this.$route.params.userId, (function (err, user) {
+      Api.getUser(this.$route.params.userId, (function (err, user) {
         if (err) {
           this.error = err;
         } else {

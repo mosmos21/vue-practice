@@ -10,7 +10,7 @@ var userList = {
   methods: {
     fetchData: function () {
       this.loading = true;
-      api.getUsers((function (err, users) {
+      Api.getUsers((function (err, users) {
         if (err) {
           this.error = err;
         } else {

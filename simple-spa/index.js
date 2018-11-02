@@ -9,9 +9,34 @@ var router = new VueRouter({
       component: userList
     },
     {
+      path: '/users/new',
+      component: createUser,
+      beforeEnter: function (to, from, next) {
+        console.log('test');
+        if (Auth.isLoggedIn()) {
+          next();
+        } else {
+          next({
+            path: '/login',
+            query: { redirect: to.fullPath }
+          });
+        }
+      }
+    },
+    {
       path: '/users/:userId',
-      name: 'userDetail',
       component: userDetail
+    },
+    {
+      path: '/login',
+      component: login
+    },
+    {
+      path: '/logout',
+      beforeEnter: function (to, from, next) {
+        Auth.logout();
+        next('/');
+      }
     }
   ]
 });
@@ -19,4 +44,7 @@ var router = new VueRouter({
 var vm = new Vue({
   el: '#app',
   router: router,
+  data: {
+    Auth: Auth
+  }
 });
