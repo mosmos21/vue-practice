@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <title>Vue Router Sample</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="row m-4 text-center">
+            <my-button>Send</my-button>
+        </div>
+        <div class="row m-4">
+            <my-button></my-button>
+        </div>
+        <div class="row m4">
+            <my-page>
+                <span class="h4" slot="header">this is header</span>
+                <span class="h4" slot="footer">this is footer</span>
+                <p>
+                    main content
+                </p>
+            </my-page>
+        </div>
+    </div>
+</body>
+
+<template id="my-button">
+    <button class="btn btn-block">
+        <slot>OK</slot>
+    </button>
+</template>
+
+<template id="my-page">
+    <div>
+        <header>
+            <slot name="header"></slot>
+        </header>
+        <main>
+            <slot></slot>
+        </main>
+        <footer>
+            <slot name="footer"></slot>
+        </footer>
+    </div>
+</template>
+
+<script src="https://unpkg.com/vue@2.5.17"></script>
+<script src="https://unpkg.com/vue-router@3.0.1"></script>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        components: {
+            MyButton: {
+                template: '#my-button'
+            },
+            MyPage: {
+                template: '#my-page'
+            }
+        }
+    })
+</script>
