@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <title>Mix-in Sample</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="row m-3">
+            <icon-share-button class="m-1"></icon-share-button>
+            <text-share-button class="m-1"></text-share-button>
+        </div>
+    </div>
+</body>
+
+<template id="icon-share-button">
+    <button class="btn btn-primary" @click="share">
+        <i class="fas fa-share-square"></i>
+    </button>
+</template>
+
+<template id="text-share-button">
+    <button class="btn btn-outline-primary" @click="share">
+        {{ buttonLabel }}
+    </button>
+</template>
+
+<script src="https://unpkg.com/vue@2.5.17"></script>
+<script src="https://unpkg.com/vue-router@3.0.1"></script>
+<script src="index.js"></script>
+
+</html>
