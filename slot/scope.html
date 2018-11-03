@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <title>Scope Sample</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="row m-3">
+            <todo-list :todos="todos">
+                <li slot-scope="{ todo }" v-if="todo.complete">
+                    <span class="lead">{{ todo.text }}</span>
+                </li>
+            </todo-list>
+        </div>
+    </div>
+</body>
+
+<template id="todo-list">
+    <ul>
+        <template v-for="todo in todos">
+            <slot :todo="todo">
+                <li :key="todo.id">
+                    {{ todo.text }}
+                </li>
+            </slot>
+        </template>
+    </ul>
+</template>
+
+<script src="https://unpkg.com/vue@2.5.17"></script>
+<script src="https://unpkg.com/vue-router@3.0.1"></script>
+
+<script>
+    var todoList = {
+        props: {
+            todos: {
+                type: Array,
+                required: true
+            }
+        },
+        template: '#todo-list'
+    }
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            todos: [
+                { id: 1, text: 'aaa', complete: true },
+                { id: 2, text: 'bbb', complete: false },
+                { id: 3, text: 'ccc', complete: false }
+            ]
+        },
+        components: {
+            todoList: todoList
+        }
+    })
+</script>
