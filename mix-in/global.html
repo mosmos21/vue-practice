@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <title>Global Mix-in Sample</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="row m-3">
+            <login-required-page></login-required-page>
+        </div>
+    </div>
+</body>
+
+<template id="page">
+    <div class="row">
+        <p v-if="!loggedInUser">
+            you need to login!
+        </p>
+        <p v-else>
+            Hello {{ loggedInUser.name }} !
+        </p>
+    </div>
+</template>
+
+<script src="https://unpkg.com/vue@2.5.17"></script>
+<script>
+    Vue.mixin({
+        data: function () {
+            return {
+                loggedInUser: null
+            }
+        },
+        created: function () {
+            var auth = this.$options.auth;
+            this.loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+            if (auth && !this.loggedInUser) {
+                window.alert('need to login!');
+            }
+        }
+    })
+
+    var LoginRequiredPage = {
+        auth: true,
+        template: '#page'
+    }
+
+    var vm = new Vue({
+        el: '#app',
+        components: {
+            LoginRequiredPage
+        }
+    })
+</script>
+
+</html>
