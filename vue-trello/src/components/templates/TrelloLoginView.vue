@@ -1,7 +1,7 @@
 <template>
     <div class="login-view">
         <h1>Trello</h1>
-        <TrelloLoginForm></TrelloLoginForm>
+        <TrelloLoginForm />
     </div>
 </template>
 
@@ -30,4 +30,3 @@ export default {
   margin: auto;
 }
 </style>
-

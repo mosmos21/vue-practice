@@ -2,10 +2,10 @@
     <form novalidate>
         <div class="form-item">
             <label for="email">メールアドレス</label>
-            <input 
-                type="text" 
-                id="email" 
-                v-model="email" 
+            <input
+                id="email"
+                v-model="email"
+                type="text"
                 autocomplete="off"
                 placeholder="vue@example.com"
                 @focus="resetError">
@@ -16,10 +16,10 @@
         </div>
         <div class="form-item">
             <label for="password">パスワード</label>
-            <input 
-                type="password"
+            <input
                 id="password"
                 v-model="password"
+                type="password"
                 autocomplete="off"
                 @focus="resetError">
             <ul class="validation-errors">
@@ -31,11 +31,15 @@
                 :disabled="disableLoginAction"
                 @click="handleClick">
                 ログイン
-            </TrelloButton> 
-            <p v-if="progress" class="login-progress">
+            </TrelloButton>
+            <p
+                v-if="progress"
+                class="login-progress">
                 ログイン中...
             </p>
-            <p v-if="error" class="login-error">
+            <p
+                v-if="error"
+                class="login-error">
                 {{ error }}
             </p>
         </div>
@@ -45,7 +49,7 @@
 <script>
 import TrelloButton from "@/components/atoms/TrelloButton";
 
-const REGEX_EMAIL = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const REGEX_EMAIL = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const required = val => !val.trim();
 
 export default {
@@ -84,7 +88,7 @@ export default {
       const fields = Object.keys(validation);
       let valid = true;
       for (let i = 0; i < fields.length; i++) {
-        const field = field[i];
+        const field = fields[i];
         valid = Object.keys(validation[field]).every(
           key => validation[field][key]
         );

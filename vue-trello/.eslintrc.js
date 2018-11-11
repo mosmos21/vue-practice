@@ -26,12 +26,19 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'import/no-webpack-loader-syntax': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'space-before-function-paren': ['error', 'never']
   },
   overrides: [
     {
       files: ['**/*.vue'],
       rules: {
-
+        'semi': 'always',
+        'quotes': 'double',
+        'vue/html-indent': ['off'],
+        'vue/html-closing-bracket-newline': ['error', {
+          'singleline': 'never',
+          'multiline': 'never'
+        }]
       }
     }
   ]

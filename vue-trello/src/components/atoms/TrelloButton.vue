@@ -12,12 +12,14 @@
 export default {
   name: "TrelloButton",
   props: {
-    type: String,
-    default: "button"
-  },
-  disabled: {
-    type: Boolean,
-    default: false
+    type: {
+      type: String,
+      default: "button"
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     classes: function() {

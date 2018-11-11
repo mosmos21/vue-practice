@@ -6,7 +6,7 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('TrelloLoginView', () => {
-  let actionslet
+  let actions
   let $router
   let store
   let LoginFormComponentStub
@@ -28,7 +28,7 @@ describe('TrelloLoginView', () => {
     actions = {
       login: sinon.stub()
     }
-    store = new Vuex.store({
+    store = new Vuex.Store({
       store: {},
       actions
     })
@@ -39,7 +39,7 @@ describe('TrelloLoginView', () => {
 
     describe('成功', () => {
       beforeEach(() => {
-        loginView = mount(TrellogLoginView, {
+        loginView = mount(TrelloLoginView, {
           mocks: { $router },
           stubs: {
             'trellog-login-form': LoginFormComponentStub
@@ -62,7 +62,7 @@ describe('TrelloLoginView', () => {
 
     describe('失敗', () => {
       beforeEach(() => {
-        loginView - mount(TrelloLoginView, {
+        loginView = mount(TrelloLoginView, {
           stubs: {
             'trello-login-form': LoginFormComponentStub
           },
@@ -78,8 +78,8 @@ describe('TrelloLoginView', () => {
 
       it('エラー処理が呼び出される', done => {
         const message = 'login failed'
-        actionslet.login.reject(new Error(message))
-        triggerLogin(loginViewm, LoginFormComponentStub)
+        actions.login.reject(new Error(message))
+        triggerLogin(loginView, LoginFormComponentStub)
 
         loginView.vm.$nextTick(() => {
           const callInfo = loginView.vm.throwReject
@@ -90,5 +90,4 @@ describe('TrelloLoginView', () => {
       })
     })
   })
-
 })
