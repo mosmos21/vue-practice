@@ -13,7 +13,7 @@ module.exports = {
     // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
     'plugin:vue/recommended',
     // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-    'standard'
+    'standard',
   ],
   // required to lint *.vue files
   plugins: [
@@ -25,6 +25,14 @@ module.exports = {
     'generator-star-spacing': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'import/no-webpack-loader-syntax': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-  }
+    'import/no-webpack-loader-syntax': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+  },
+  overrides: [
+    {
+      files: ['**/*.vue'],
+      rules: {
+
+      }
+    }
+  ]
 }
