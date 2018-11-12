@@ -50,7 +50,7 @@
 import TrelloButton from "@/components/atoms/TrelloButton";
 
 const REGEX_EMAIL = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const required = val => !val.trim();
+const required = val => !!val.trim();
 
 export default {
   name: "TrellogLoginForm",
@@ -72,7 +72,7 @@ export default {
     };
   },
   computed: {
-    valication: function() {
+    validation: function() {
       return {
         email: {
           required: required(this.email),
@@ -95,10 +95,10 @@ export default {
         if (!valid) {
           break;
         }
-        return valid;
       }
+      return valid;
     },
-    disabledLoginAction: function() {
+    disableLoginAction: function() {
       return !this.valid || this.progress;
     }
   },

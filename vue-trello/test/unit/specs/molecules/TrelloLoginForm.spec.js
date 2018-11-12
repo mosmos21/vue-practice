@@ -70,7 +70,7 @@ describe('TrelloLoginForm', () => {
     let loginForm
     beforeEach(done => {
       loginForm = mount(TrelloLoginForm, {
-        propsData: { onLogin: () => { } }
+        propsData: { onlogin: () => { } }
       })
       loginForm.vm.$nextTick(done)
     })
@@ -160,8 +160,8 @@ describe('TrelloLoginForm', () => {
         // click event
         loginForm.find('button').trigger('click')
         expect(onloginStub.called).to.equal(false)
-        expect(loginForm.error).to.equal('')
-        expect(loginForm.vm.disableLoginActionn).to.equal(true)
+        expect(loginForm.vm.error).to.equal('')
+        expect(loginForm.vm.disableLoginAction).to.equal(true)
 
         // update state
         loginForm.vm.$nextTick(() => {
@@ -171,7 +171,7 @@ describe('TrelloLoginForm', () => {
           expect(authInfo.password).to.equal(loginForm.vm.password)
           loginForm.vm.$nextTick(() => {
             expect(loginForm.vm.error).to.equal('')
-            expect(loginForm.vm.disableLoginAvtion).to.equal(false)
+            expect(loginForm.vm.disableLoginAction).to.equal(false)
             done()
           })
         })
@@ -194,7 +194,7 @@ describe('TrelloLoginForm', () => {
           expect(authInfo.password).to.equal(loginForm.vm.password)
           loginForm.vm.$nextTick(() => {
             expect(loginForm.vm.error).to.equal('login error!')
-            expect(loginForm.vm.disableLoginAvtion).to.equal(false)
+            expect(loginForm.vm.disableLoginAction).to.equal(false)
             done()
           })
         })
