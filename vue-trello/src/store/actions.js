@@ -4,8 +4,12 @@ import { Auth, List, Task } from '../api'
 /* eslint-enabled no-unused-vars */
 
 export default {
-  login: ({ commit }) => {
-    throw new Error('[login] not supported yet.')
+  login: ({ commit }, authInfo) => {
+    return Auth.login(authInfo)
+      .then(({ token, userId }) => {
+        commit(type.AUTH_LOGIN, { token, userId })
+      })
+      .catch(err => { throw err })
   },
 
   fetchLists: ({ commit }) => {
