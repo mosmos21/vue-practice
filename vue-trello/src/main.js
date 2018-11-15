@@ -8,6 +8,7 @@ import router from './router'
 import store from './store'
 
 Vue.config.productionTip = false
+Vue.config.performance = true
 Vue.component(ErrorBoudary.name, ErrorBoudary)
 
 Vue.config.errorHandler = (err, vm, info) => {
