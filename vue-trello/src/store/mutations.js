@@ -21,7 +21,7 @@ export default {
     throw new Error('[REMOVE_TASK] not supported yet.')
   },
 
-  [types.AUTH_LOGIN](state) {
+  [types.AUTH_LOGOUT](state) {
     throw new Error('[AUTH_LOGOUT] not supported yet.')
   }
 }

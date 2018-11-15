@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
-import * as type from './mutation-types'
+import * as types from './mutation-types'
 import { Auth, List, Task } from '../api'
 /* eslint-enabled no-unused-vars */
 
 export default {
   login: ({ commit }, authInfo) => {
+    console.log(commit)
     return Auth.login(authInfo)
       .then(({ token, userId }) => {
-        commit(type.AUTH_LOGIN, { token, userId })
+        commit(types.AUTH_LOGIN, { token, userId })
       })
       .catch(err => { throw err })
   },
