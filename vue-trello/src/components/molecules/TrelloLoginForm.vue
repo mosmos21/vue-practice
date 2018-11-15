@@ -65,8 +65,8 @@ export default {
   },
   data: function() {
     return {
-      email: "",
-      password: "",
+      email: "vue@example.com",
+      password: "xxxx",
       progress: false,
       error: ""
     };
